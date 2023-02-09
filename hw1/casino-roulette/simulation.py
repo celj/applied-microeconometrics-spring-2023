@@ -91,7 +91,8 @@ def roulette_payout(bet_type, bet_number, winning_number):
             return 2
     elif bet_type == "Dozen":
         if bet_number in range(
-            (winning_number - 1) // 12 * 12 + 1, (winning_number - 1) // 12 * 12 + 13
+            (winning_number - 1) // 12 * 12 + 1,
+            (winning_number - 1) // 12 * 12 + 13,
         ):
             return 2
     elif bet_type == "Even money":
