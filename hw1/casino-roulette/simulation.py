@@ -151,7 +151,7 @@ strategies = [
 ]
 
 for iteration in iterations:
-    fig, ax = plt.subplots(figsize=(9, 6), nrows=1, ncols=1)
+    fig, ax = plt.subplots(figsize=(12, 9), nrows=1, ncols=1)
     for strategy in strategies:
         funds = simulate(strategy, bet_types, starting_funds, iteration)
         (line,) = plt.plot(funds, label=strategy)
