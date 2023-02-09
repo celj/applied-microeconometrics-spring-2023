@@ -118,10 +118,7 @@ def simulate(strategy, bet_types, starting_funds, max_num_bets):
             previous_result = 1
         else:
             previous_result = 0
-    expected_value = np.cumsum(funds) / np.arange(1, len(funds) + 1)
-    if len(expected_value) < max_num_bets:
-        expected_value = np.append(expected_value, 0)
-    return expected_value
+    return np.cumsum(funds) / np.arange(1, len(funds) + 1)
 
 
 starting_funds = 10000
@@ -157,7 +154,16 @@ for iteration in iterations:
     fig, ax = plt.subplots(figsize=(9, 6), nrows=1, ncols=1)
     for strategy in strategies:
         funds = simulate(strategy, bet_types, starting_funds, iteration)
-        plt.plot(funds, label=strategy)
+        (line,) = plt.plot(funds, label=strategy)
+        last_fund = funds[-1]
+        last_index = len(funds) - 1
+        ax.scatter(
+            last_index,
+            last_fund,
+            marker="o",
+            color=line.get_color(),
+            s=10,
+        )
     plt.legend()
     ax.yaxis.set_major_formatter(formatter)
     plt.savefig(f"fig/{iteration}_its.png")
